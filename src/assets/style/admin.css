@@ -1,0 +1,408 @@
+/* =====adim form ====== */
+.body{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    min-height: 100vh;
+    position:fixed;
+    top:0px;
+    z-index: 10;
+}
+.form{
+    min-width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+              0 32px 64px -48px rgba(0,0,0,0.5);   
+}
+.form form{
+    padding: 0px 40px;
+}
+.form h1{
+    font-size: 24px;
+    text-align: center;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid silver;
+}
+form .txt_field{
+    position: relative;
+    border-bottom: 2px solid #c4c4c4;
+    margin:20px 0;
+}
+.txt_field input{
+    width: 100%;
+    padding: .5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+.txt_field label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #000;
+    transform: translateY(-50%);
+    font-size: 14px;
+    pointer-events: none;
+    transition: .5s;
+}
+.txt_field span::before{
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    width: 100%;
+    height: 3px;
+    background-color: #088178;
+    transition: .4s;
+    transform: scale(0);
+}
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label{
+    top:0px;
+    font-size: 10px;
+    color: #375243;
+}
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before{
+    width: 100%;
+    transform: scale(1);
+}
+.forget{
+    display: block;
+    margin: -5px 0 20px 5px;
+    color:#000;
+    cursor: pointer;
+    text-decoration: none;
+}
+.forget:hover{
+    text-decoration: underline;
+}
+.form form input[type="submit"]{
+    width: 100%;
+    height: 40px;
+    border: 1px solid;
+    background-color: #088178;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+.form form input[type="submit"]:hover{
+    border-color:#088178;
+    transition: .5s;
+}
+.signup_link{
+    margin: 20px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #666666;
+}
+.signup_link a{
+    color: #088178;
+    text-decoration: none;
+}
+.signup_link a:hover{
+    text-decoration: underline;
+}
+@media (max-width:500px) {
+    .form{
+        min-width: 95%;
+    } 
+}
+
+/* ====end of admin form====== */
+#admin .admin-content{
+    padding: 15px 80px;
+}
+.main-content{
+    overflow: auto;
+}
+.revenue{
+    width:100%;
+    display: grid;
+    grid-gap:20px;
+    grid-template-columns: repeat(4,1fr);
+}
+.revenue .dash{
+    padding: 15px 25px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+              0 32px 64px -48px rgba(0,0,0,0.5);
+}
+.revenue .dash .top{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.revenue .dash .top h2{
+    color:  #404553;
+    font-size: 32px;
+}
+.revenue .dash .top h6{
+    color:  #6c7293;
+    margin-left: 5px;
+    font-size: 12px;
+}
+.revenue .dash .top h4.green{
+    margin-inline: 10px;
+    color: #00d25b;
+}
+.revenue .dash .fa.green{
+    padding: 10px;
+    margin-left: auto;
+    border-radius: 5px; 
+    color: #00d25b;
+    background-color:#375243;
+}
+.revenue .dash .top h4.red{
+    margin-left: 10px;
+    color: #f96868;
+}
+.revenue .dash .fa.red{
+    padding: 10px;
+    margin-left: auto;
+    border-radius: 5px; 
+    color: #f96868;
+    background-color:#5f2e2c;
+}
+.revenue .dash p{
+    color: #6c7293;
+}
+/* begining of transaction */
+.transaction{
+    margin-top: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+}
+.transaction .details{
+    padding: 30px;
+    border-radius: 5px;
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+              0 32px 64px -48px rgba(0,0,0,0.5);
+}
+.transaction .details span{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+.transaction .details h1{
+    font-size: 32px;
+}
+.transaction .details h3,
+.transaction .details h1{
+    color:  #404553;
+}
+.transaction .details span p{
+    margin-left: 10px;
+    font-weight: 600;
+    color: #00d25b;
+}
+.transaction .details p{
+    color: #6c7293;
+}
+.transaction .details .fab,
+.transaction .details .fa{
+    font-size: 40px;
+    font-weight: 600;
+    position: absolute;
+    left: 80%;
+    top: 50%;
+}
+.transaction .details .blue{
+    color: #0090e7;
+}
+.transaction .details .red{
+    color: #fc424a;
+}
+.transaction .details .green{
+    color: #00d25b;
+}
+/* end of transaction */
+/* begining order status */
+.warpper{
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    padding: 10px 20px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+              0 32px 64px -48px rgba(0,0,0,0.5);
+}
+.order_header{
+    width: 100%;
+    height: 10%;
+    padding-top: 0px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px #6c7293 solid;
+}
+.order_header h4{
+    font-weight: 600;
+    color: #404553;
+}
+.order_header form{
+    display: flex;
+    width: 250px;
+    height: 35px;
+    border: 1px #6c7293 solid;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.order_header form input[type=text]{
+    padding: 10px;
+    width: 90%;
+    height: 100%;
+    border: none;
+    outline: none;
+    color: #6c7293;
+}
+.order_header form input[type=submit]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: #088178;
+    font-weight: 600;
+    /* color: #6c7293; */
+}
+.order_header form input[type=submit]:hover{
+    background-color: #434a54;
+    color: #fff;
+}
+
+.order{
+    margin-top:1%;
+    width: 100%;
+    height: 89%;
+    padding: 5px;
+    overflow-y: auto;
+}
+.order table{
+    width: 100%;
+    /* min-height: 200px; */
+    text-align: center;
+    color: #404553;
+    border-collapse: collapse;
+    border-spacing: 0;
+    overflow-y: auto;
+}
+th, td{
+    padding: 10px;
+    border-bottom: 1px #a3a3a3 solid;
+}
+.order thead{
+    background-color: #088178
+}
+.order table thead th{
+    font-size: 14px;
+    font-weight: 600;
+    padding-block: 10px;
+    text-transform: uppercase;
+}
+.order table tbody tr{
+    background-color: #fff; 
+}
+.order table tbody tr:hover{
+    background-color: #f2f2f2;
+}
+.order tbody tr td:nth-child(2){
+    text-align: left;
+}
+.order table tr td button{
+    margin: 0px auto;
+    width: 130px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    border-radius: 5px;
+}
+.order table tr td .Delivered{
+    color: #00d25b;
+    border: 1px #00d25b solid;
+}
+.order table tr td .Delivered:hover{
+    color: #fff;
+    background-color:#00d25b;
+}
+.order table tr td .Processing{
+    color: #fc424a;
+    border: 1px #fc424a solid;
+}
+.order table tr td .Processing:hover{
+    color: #fff;
+    background-color:#fc424a;
+}
+.order table tr td .Pending{
+    color: #ffab00;
+    border: 1px #ffab00 solid;
+}
+.order table tr td .Pending:hover{
+    color: #fff;
+    background-color:#ffab00;
+}
+.order table tr td .Comfirmed{
+    color: #3b7aa5;
+    border: 1px #3b7aa5 solid;
+}
+.order table tr td .Comfirmed:hover{
+    color: #fff;
+    background-color:#3b7aa5;
+}
+.order table tr td .Completed{
+    color: #fc09bf;
+    border: 1px #fc09bf solid;
+}
+.order table tr td .Completed:hover{
+    color: #fff;
+    background-color:#fc09bf;
+}
+@media (max-width:1200px) {
+    .revenue{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .dilevery table{
+        width: 900px;
+    }
+    .transaction{
+        margin-top: 20px;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(1, 1fr);
+    } 
+}
+@media (max-width:800px) {
+    #admin .admin-content{
+        padding: 10px;
+    }
+}
+@media (max-width:600px) {
+    .revenue{
+        gap: 10px;
+        grid-template-columns: repeat(1,1fr);
+    } 
+    .transaction .details span{    
+        flex-direction:row;
+        align-items: center;
+    }
+}
