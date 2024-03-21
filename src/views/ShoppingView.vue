@@ -110,13 +110,13 @@ export default {
     handleform () {
       this.formShow = !this.formShow
     },
-    handleOrder (data) {
+    async handleOrder (data) {
       // url: http://localhost:300 0r  https://store-server-c1m1.onrender.com
-      this.formShow = !this.formShow
-      axios.post('https://store-server-c1m1.onrender.com/order', data)
+      await axios.post('https://store-server-c1m1.onrender.com/order', data)
         .then((res) => {
           if (res.status === 201) {
             this.$store.state.order += 1
+            this.formShow = !this.formShow
           }
         }).catch((err) => {
           console.log(err)
