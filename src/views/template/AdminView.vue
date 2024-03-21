@@ -2,7 +2,7 @@
   <div class="body" v-if="$store.state.Admin">
     <div class="form">
       <h1>Admin</h1>
-      <form action="post" autocomplete="off" @submit.prevent="handleForm()">
+      <form autocomplete="off" @submit.prevent="handleForm()">
         <div class="txt_field">
           <input type="text" name="username"  v-model="username" required>
           <span></span>
