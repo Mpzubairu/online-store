@@ -21,7 +21,7 @@
       </form>
     </div>
   </div>
-  <router-view v-else></router-view>
+  <router-view></router-view>
 </template>
 <script>
 export default {
