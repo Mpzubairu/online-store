@@ -1,5 +1,4 @@
 <template>
-  <router-view></router-view>
   <div class="body" v-if="$store.state.Admin">
     <div class="form">
       <h1>Admin</h1>
@@ -22,6 +21,7 @@
       </form>
     </div>
   </div>
+  <router-view v-else></router-view>
 </template>
 <script>
 export default {
