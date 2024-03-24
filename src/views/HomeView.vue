@@ -37,7 +37,7 @@
         <p>Summer Collection New Morden Design</p>
         <div class="pro-container">
            <!-- products loop -->
-           <ProductView v-for="items in salad.slice(0,8)"
+           <ProductView v-for="items in product.slice(0,8)"
             :key="items.id"
             :productID="items.id"
             :productName="items.name"
@@ -56,7 +56,7 @@
         <h2>New Arrivals</h2>
         <p>Summer Collection New Morden Design</p>
         <div class="pro-container">
-           <ProductView v-for="items in salad.slice(15, 23)"
+           <ProductView v-for="items in product.slice(15, 23)"
             :key="items.id"
             :productID="items.id"
             :productName="items.name"
@@ -82,7 +82,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['salad'])
+    ...mapGetters(['product'])
   },
   created () {
     // console.log(this.inventory)

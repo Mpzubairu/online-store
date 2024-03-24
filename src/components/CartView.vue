@@ -22,19 +22,19 @@ export default {
     ...mapActions(['removeItem']),
     ...mapMutations(['updateCart']),
     getImage (id) {
-      const fileImg = this.salad.find((pro) => {
+      const fileImg = this.product.find((pro) => {
         return pro.id === parseInt(id)
       })
       return fileImg ? require('@/assets/image/products/' + fileImg.file) : ''
     },
     getName (id) {
-      const fileImg = this.salad.find((pro) => {
+      const fileImg = this.product.find((pro) => {
         return pro.id === parseInt(id)
       })
       return fileImg.name
     },
     getPrice (id) {
-      const fileImg = this.salad.find((pro) => {
+      const fileImg = this.product.find((pro) => {
         return pro.id === parseInt(id)
       })
       return fileImg.Price
@@ -51,7 +51,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['salad', 'shopping_cart'])
+    ...mapGetters(['product', 'shopping_cart'])
   },
   created () {
     this.quantity = this.howMany

@@ -58,7 +58,6 @@
   </section>
 </template>
 <script>
-import axios from 'axios'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'PreviewCart',
@@ -72,19 +71,19 @@ export default {
   methods: {
     ...mapMutations(['editStatus']),
     getImage (id) {
-      const fileImg = this.salad.find((pro) => {
+      const fileImg = this.product.find((pro) => {
         return pro.id === parseInt(id)
       })
       return fileImg ? require('@/assets/image/products/' + fileImg.file) : ''
     },
     getName (id) {
-      const fileImg = this.salad.find((pro) => {
+      const fileImg = this.product.find((pro) => {
         return pro.id === parseInt(id)
       })
       return fileImg.name
     },
     getPrice (id) {
-      const product = this.salad.find((pro) => {
+      const product = this.product.find((pro) => {
         return pro.id === parseInt(id)
       })
       return product.Price
@@ -110,23 +109,15 @@ export default {
         status: option
       }
       this.editStatus(Data)
-      // url: http://localhost:300 0r  https://store-server-c1m1.onrender.com
-      axios.patch(`https://store-server-c1m1.onrender.com/order/${val}`, { Status: option })
-        .then(() => {
-          return true
-        })
-        .catch((err) => {
-          console.log(err)
-        })
     }
   },
   computed: {
-    ...mapGetters(['salad'])
+    ...mapGetters(['product'])
   },
   created () {
     const val = this.$route.params.id
     // console.log(val)
-    const collect = this.$store.state.AdminOrder.find((element) => {
+    const collect = this.$store.state.Order.find((element) => {
       return element.id === val
     })
     if (collect) {

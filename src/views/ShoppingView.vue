@@ -55,12 +55,12 @@
         <h1>Place an Order</h1>
         <form action="post" autocomplete="off" @submit.prevent="placeOrder()">
           <div class="txt_field">
-            <input type="text" name="name"  v-model="name" required>
+            <input type="text" name="name"  v-model="name" required id="name">
             <span></span>
-            <label for="username">Name</label>
+            <label for="name">Name</label>
           </div>
           <div class="txt_field">
-            <input type="tel" name="phone"  v-model.number="phone" required>
+            <input type="tel" name="phone-no"  v-model.number="phone" required id="phone-no">
             <span></span>
             <label for="phone-no">Phone</label>
           </div>
@@ -76,7 +76,6 @@
   <footerview/>
 </template>
 <script>
-import axios from 'axios'
 import { mapGetters } from 'vuex'
 import footerview from '@/components/FooterView.vue'
 import cartview from '@/components/CartView.vue'
@@ -96,7 +95,7 @@ export default {
   methods: {
     // ...mapMutations(['modifyCart'])
     getPrice (id) {
-      const product = this.salad.find((pro) => {
+      const product = this.product.find((pro) => {
         return pro.id === parseInt(id)
       })
       return product.Price
@@ -110,18 +109,6 @@ export default {
     handleform () {
       this.formShow = !this.formShow
     },
-    async handleOrder (data) {
-      // url: http://localhost:300 0r  https://store-server-c1m1.onrender.com
-      await axios.post('https://store-server-c1m1.onrender.com/order', data)
-        .then((res) => {
-          if (res.status === 201) {
-            this.$store.state.order += 1
-            this.formShow = !this.formShow
-          }
-        }).catch((err) => {
-          console.log(err)
-        })
-    },
     placeOrder () {
       const uniqueId = Math.random().toString(36).substring(2)
       // console.log(uniqueId)
@@ -134,33 +121,17 @@ export default {
         Date: new Date(),
         cart: this.shopping_cart
       }
-      const localStore = [uniqueId]
       if (Object.values(this.shopping_cart).length <= 0) {
         alert('Your Shopping Cart is Empty')
       } else {
-        this.handleOrder(Data)
         this.$store.state.Order.push(Data)
-        if (localStorage.getItem('fruitBar')) {
-          const fetchStore = JSON.parse(localStorage.getItem('fruitBar'))
-          fetchStore.push(uniqueId)
-          const newStore = JSON.stringify(fetchStore)
-          localStorage.setItem('fruitBar', newStore)
-          // push to database
-          // this.handleOrder(Data)
-          // this.$store.state.Order.push(Data)
-        } else {
-        // New order
-          const deploy = JSON.stringify(localStore)
-          localStorage.setItem('fruitBar', deploy)
-        // push to database
-        // this.handleOrder(Data)
-        // this.$store.state.Order.push(Data)
-        }
+        this.$store.state.order += 1
+        this.formShow = !this.formShow
       }
     }
   },
   computed: {
-    ...mapGetters(['salad', 'shopping_cart'])
+    ...mapGetters(['product', 'shopping_cart'])
   }
 }
 </script>

@@ -5,7 +5,7 @@
    </section>
   <section id="product1" class="section-p1">
     <div class="pro-container">
-      <ProductView v-for="items in salad"
+      <ProductView v-for="items in product"
         :key="items.id"
         :productID="items.id"
         :productName="items.name"
@@ -32,7 +32,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['salad'])
+    ...mapGetters(['product'])
   },
   created () {
     // console.log(this.inventory)

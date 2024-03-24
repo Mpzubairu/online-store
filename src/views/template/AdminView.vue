@@ -4,12 +4,12 @@
       <h1>Admin</h1>
       <form autocomplete="off" @submit.prevent="handleForm()">
         <div class="txt_field">
-          <input type="text" name="username"  v-model="username" required>
+          <input type="text" name="username"  v-model="username" required id ="username">
           <span></span>
           <label for="username">Username</label>
         </div>
         <div class="txt_field">
-          <input type="password" name="password"  v-model="password" required>
+          <input type="password" name="password"  v-model="password" required id="password">
           <span></span>
           <label for="password">Password</label>
         </div>

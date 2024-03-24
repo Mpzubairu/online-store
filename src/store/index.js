@@ -12,7 +12,7 @@ export default createStore({
     AdminOrder: []
   },
   getters: {
-    salad: (state) => state.inventory,
+    product: (state) => state.inventory,
     shopping_cart: (state) => state.cart
   },
   mutations: {

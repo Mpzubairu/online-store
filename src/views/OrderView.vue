@@ -6,9 +6,9 @@
     </div>
   </section>
   <section id="cart" class="section-p1">
-    <myorderview v-for="(items, i) in $store.state.Order"
-    :key="i"
-    :loopOrder="items"/>
+    <div v-for="(items, i) in $store.state.Order" :key="i">
+      <myorder :loopOrder="items"/>
+    </div>
     <div class="empty" v-if="$store.state.order === 0">
       <h3>You Have No Order Currently</h3>
         <router-link to="/shop">Go To Shop</router-link>
@@ -20,11 +20,11 @@
 // import axios from 'axios'
 // import { mapActions } from 'vuex'
 import footerview from '@/components/FooterView.vue'
-import myorderview from '@/components/MyOrder.vue'
+import myorder from '@/components/MyOrder.vue'
 export default {
   name: 'OrderView',
   components: {
-    myorderview,
+    myorder,
     footerview
   }
 }

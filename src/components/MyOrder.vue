@@ -1,6 +1,6 @@
 <template>
   <table>
-    <thead v-if="remove">
+    <thead>
       <tr class="total">
         <td><strong>Status:</strong></td>
         <td>{{ loopOrder.Status }}</td>
@@ -16,9 +16,8 @@
       <th>Subtotal</th>
     </tr>
     </thead>
-    <tbody v-if="remove">
+    <tbody>
       <tr v-for="(value, key, i) in loopOrder.cart" :key="i">
-        <!-- <td><button @click="removeItem(key)"><i class="fa fa-times"></i></button></td> -->
         <td><img :src="getImage(key)" alt=""/></td>
         <td>{{ getName(key) }}</td>
         <td>N {{ getPrice(key) }}</td>
@@ -29,39 +28,38 @@
   </table>
 </template>
 <script>
-import axios from 'axios'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'MyOrder',
   props: ['loopOrder'],
   data () {
     return {
-      remove: true,
+      // remove: true,
       Order: [],
       seconds: '',
       interval: ''
     }
   },
   computed: {
-    ...mapGetters(['salad'])
+    ...mapGetters(['product'])
   },
   methods: {
     // ...mapActions(['removeItem']),
     ...mapMutations(['updateCart', 'removeOrder']),
     getImage (id) {
-      const fileImg = this.salad.find((pro) => {
+      const fileImg = this.product.find((pro) => {
         return pro.id === parseInt(id)
       })
       return fileImg ? require('@/assets/image/products/' + fileImg.file) : ''
     },
     getName (id) {
-      const fileImg = this.salad.find((pro) => {
+      const fileImg = this.product.find((pro) => {
         return pro.id === parseInt(id)
       })
       return fileImg.name
     },
     getPrice (id) {
-      const fileImg = this.salad.find((pro) => {
+      const fileImg = this.product.find((pro) => {
         return pro.id === parseInt(id)
       })
       return fileImg.Price
@@ -97,19 +95,8 @@ export default {
       return Math.floor(this.seconds) + ' seconds'
     },
     Delete (id) {
-      // url: http://localhost:300 0r  https://store-server-c1m1.onrender.com
-      axios.delete(`https://store-server-c1m1.onrender.com/order/${id}`)
-        .then(() => {
-          const localdb = JSON.parse(localStorage.getItem('fruitBar'))
-          const index = localdb.indexOf(id)
-          localdb.splice(index, 1)
-          this.$store.state.order -= 1
-          const data = JSON.stringify(localdb)
-          localStorage.setItem('fruitBar', data)
-          this.removeOrder(id)
-        }).catch((err) => {
-          console.log(err)
-        })
+      this.$store.state.order -= 1
+      this.removeOrder(id)
     }
   }
 }

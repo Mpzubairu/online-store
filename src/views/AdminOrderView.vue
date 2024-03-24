@@ -83,7 +83,7 @@
               <th> Amount </th>
             </thead>
             <tbody>
-              <tr v-for="items in $store.state.AdminOrder" :key='items.id' @click="preview(items.id)">
+              <tr v-for="items in $store.state.Order" :key='items.id' @click="preview(items.id)">
                 <td> {{ items.id }}</td>
                 <td> {{ items.Name }}</td>
                 <td> {{ items.Phone }}</td>
@@ -101,7 +101,6 @@
   </section>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -114,21 +113,19 @@ export default {
   },
   computed: {
     countOrder () {
-      const num = this.$store.state.AdminOrder.length
+      const num = this.$store.state.Order.length
       return num
     },
     countPending () {
-      const num = this.$store.state.AdminOrder.filter(fig => fig.Status !== 'Delivered')
+      const num = this.$store.state.Order.filter(fig => fig.Status !== 'Delivered')
       return num.length
     },
     countCompleted () {
-      const num = this.$store.state.AdminOrder.filter(fig => {
-        return fig.Status === 'Completed'
-      })
+      const num = this.$store.state.Order.filter(fig => fig.Status === 'Completed')
       return num.length
     },
     countDelivered () {
-      const num = this.$store.state.AdminOrder.filter(fig => fig.Status === 'Delivered')
+      const num = this.$store.state.Order.filter(fig => fig.Status === 'Delivered')
       return num.length
     },
     percentagePending () {
@@ -206,23 +203,16 @@ export default {
       this.Delivered += total
     }
   },
-  async beforeCreate () {
-    // url: http://localhost:3000 0r  https://store-server-c1m1.onrender.com/order
-    await axios.get('https://store-server-c1m1.onrender.com/order')
-      .then((res) => {
-        this.$store.state.AdminOrder = res.data
-      }).catch((err) => {
-        console.log(err)
-      })
-    for (const item of this.$store.state.AdminOrder) {
+  async created () {
+    for (const item of this.$store.state.Order) {
       this.getAmout(item.cart)
     }
-    for (const item of this.$store.state.AdminOrder) {
+    for (const item of this.$store.state.Order) {
       if (item.Status !== 'Delivered') {
         this.getPending(item.cart)
       }
     }
-    for (const item of this.$store.state.AdminOrder) {
+    for (const item of this.$store.state.Order) {
       if (item.Status === 'Delivered') {
         this.getDelivered(item.cart)
       }
