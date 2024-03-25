@@ -87,7 +87,7 @@
                 <td> {{ items.id }}</td>
                 <td> {{ items.Name }}</td>
                 <td> {{ items.Phone }}</td>
-                <td> {{ getDate(items.Date) }} </td>
+                <td> <timeago :datetime="items.Date"/> </td>
                 <td>
                   <button :class="items.Status">{{ items.Status }}</button>
                 </td>
@@ -153,30 +153,6 @@ export default {
   methods: {
     preview (id) {
       this.$router.push(`/admin/preview/${id}`)
-    },
-    getDate (time) {
-      this.seconds = Math.floor((new Date() - new Date(time)) / 1000)
-      this.interval = this.seconds / 31536000
-      if (this.interval > 1) {
-        return Math.floor(this.interval) + ' years'
-      }
-      this.interval = this.seconds / 2592000
-      if (this.interval > 1) {
-        return Math.floor(this.interval) + ' months'
-      }
-      this.interval = this.seconds / 86400
-      if (this.interval > 1) {
-        return Math.floor(this.interval) + ' days'
-      }
-      this.interval = this.seconds / 3600
-      if (this.interval > 1) {
-        return Math.floor(this.interval) + ' hours'
-      }
-      this.interval = this.seconds / 60
-      if (this.interval > 1) {
-        return Math.floor(this.interval) + ' minutes'
-      }
-      return Math.floor(this.seconds) + ' seconds'
     },
     getPrice (id) {
       const product = this.$store.state.inventory.find((pro) => {

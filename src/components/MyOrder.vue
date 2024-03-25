@@ -4,7 +4,7 @@
       <tr class="total">
         <td><strong>Status:</strong></td>
         <td>{{ loopOrder.Status }}</td>
-        <td>{{ getDate(loopOrder.Date) }} Ago</td>
+        <td><timeago :datetime="loopOrder.Date"/></td>
         <td><strong>Total: N{{ getTotal() }}</strong></td>
         <td><button class="delete" v-if="loopOrder.Status === 'Delivered'" @click="Delete(loopOrder.id)">Delete</button></td>
       </tr>
@@ -35,7 +35,7 @@ export default {
   data () {
     return {
       // remove: true,
-      Order: [],
+      // Order: [],
       seconds: '',
       interval: ''
     }
@@ -69,30 +69,6 @@ export default {
         return acc + (acct[1] * this.getPrice(acct[0]))
       }, 0)
       return total
-    },
-    getDate (time) {
-      this.seconds = Math.floor((new Date() - new Date(time)) / 1000)
-      this.interval = this.seconds / 31536000
-      if (this.interval > 1) {
-        return Math.floor(this.interval) + ' years'
-      }
-      this.interval = this.seconds / 2592000
-      if (this.interval > 1) {
-        return Math.floor(this.interval) + ' months'
-      }
-      this.interval = this.seconds / 86400
-      if (this.interval > 1) {
-        return Math.floor(this.interval) + ' days'
-      }
-      this.interval = this.seconds / 3600
-      if (this.interval > 1) {
-        return Math.floor(this.interval) + ' hours'
-      }
-      this.interval = this.seconds / 60
-      if (this.interval > 1) {
-        return Math.floor(this.interval) + ' minutes'
-      }
-      return Math.floor(this.seconds) + ' seconds'
     },
     Delete (id) {
       this.$store.state.order -= 1
